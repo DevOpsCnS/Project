@@ -10,7 +10,7 @@ resources:
       source: DevOpsCnS.Pipeline_Repo  # Name of the target pipeline in Azure DevOps
       project: DevOpsCnS  # Name of the project containing the target pipeline
       branch: main  # Branch to use from the target pipeline project
-      trigger: none  # Disable automatic triggers from the target pipeline
+      trigger: true  # Disable automatic triggers from the target pipeline
 
 stages:
 - stage: RunTargetPipeline
