@@ -4,13 +4,6 @@
 pool:
   name: self-hosted-agent
 
-resources:
-  pipelines:
-    - pipeline: targetPipeline  # Alias for the target pipeline
-      source: DevOpsCnS.Pipeline_Repo  # Name of the target pipeline in Azure DevOps
-      project: DevOpsCnS  # Name of the project containing the target pipeline
-      trigger: true  # Disable automatic triggers from the target pipeline
-
 stages:
 - stage: RunTargetPipeline
   displayName: Run Target Project Pipeline
