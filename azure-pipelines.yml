@@ -11,3 +11,25 @@ stages:
   - job: TriggerTargetPipeline
     steps:
     - script: echo "Pipeline from target project triggered successfully"
+
+# stages:
+# - stage: TriggerProject1
+#   jobs:
+  # - job: TriggerPipeline
+  #   steps:
+  #   - script: echo "Triggering Project1-Pipeline manually"
+  #   - task: PowerShell@2
+  #     inputs:
+  #       targetType: inline
+  #       script: |
+  #         $headers = @{
+  #             "Content-Type" = "application/json"
+  #             "Authorization" = "Bearer YOUR_PAT_TOKEN"  # Replace with PAT
+  #         }
+  #         $body = @{
+  #             "definition" = @{
+  #                 "id" = "1"  # Replace with Project1-Pipeline ID
+  #             }
+  #         } | ConvertTo-Json -Depth 10
+  #         $url = "https://dev.azure.com/YOUR_ORG_NAME/Project1/_apis/pipelines/1/runs?api-version=6.0"  # Replace URL
+  #         Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $body
