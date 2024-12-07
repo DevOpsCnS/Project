@@ -1,11 +1,27 @@
-resources:
-  repositories:
-    - repository: Project
-      type: git
-      name: Shared/Templates
+trigger:
+- none  # Trigger this pipeline on changes to the main branch of the source project
 
 pool:
   name: self-hosted-agent
 
+resources:
+  pipelines:
+    - pipeline: targetPipeline  # Alias for the target pipeline
+      source: DevOpsCnS.Pipeline_Repo  # Name of the target pipeline in Azure DevOps
+      project: DevOpsCnS  # Name of the project containing the target pipeline
+      branch: main  # Branch to use from the target pipeline project
+      trigger: none  # Disable automatic triggers from the target pipeline
+
 stages:
-- template: azure-pipelines.yml@Project
+- stage: RunTargetPipeline
+  displayName: Run Target Project Pipeline
+  jobs:
+  - job: TriggerTargetPipeline
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        sourcePipeline: targetPipeline
+        buildType: specific
+        buildVersionToDownload: latest
+        downloadPath: $(System.ArtifactsDirectory)
+    - script: echo "Pipeline from target project triggered successfully"
