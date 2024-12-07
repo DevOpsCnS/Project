@@ -18,10 +18,4 @@ stages:
   jobs:
   - job: TriggerTargetPipeline
     steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        sourcePipeline: targetPipeline
-        buildType: specific
-        buildVersionToDownload: latest
-        downloadPath: $(System.ArtifactsDirectory)
     - script: echo "Pipeline from target project triggered successfully"
