@@ -1,8 +1,8 @@
 #trigger:
 #- none  # Trigger this pipeline on changes to the main branch of the source project
 
-#pool:
-#  name: self-hosted-agent
+pool:
+  name: self-hosted-agent
 
 resources:
   pipelines:
