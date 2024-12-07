@@ -1,15 +1,14 @@
-trigger:
-- none  # Trigger this pipeline on changes to the main branch of the source project
+#trigger:
+#- none  # Trigger this pipeline on changes to the main branch of the source project
 
-pool:
-  name: self-hosted-agent
+#pool:
+#  name: self-hosted-agent
 
 resources:
   pipelines:
     - pipeline: targetPipeline  # Alias for the target pipeline
       source: DevOpsCnS.Pipeline_Repo  # Name of the target pipeline in Azure DevOps
       project: DevOpsCnS  # Name of the project containing the target pipeline
-      branch: main  # Branch to use from the target pipeline project
       trigger: true  # Disable automatic triggers from the target pipeline
 
 stages:
