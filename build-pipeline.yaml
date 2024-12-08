@@ -2,6 +2,7 @@ resources:
   repositories:
     - repository: Pipeline_Repo  # Alias for the template repository
       type: github
+      endpoint: DevOpsCnS
       name: DevOpsCnS/template-repo  # Specify the project and repository name
       ref: refs/heads/main  # Branch or tag in the template repository
 
