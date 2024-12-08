@@ -6,6 +6,9 @@ resources:
       name: DevOpsCnS/Pipeline_Repo  # Specify the project and repository name
       ref: refs/heads/main  # Branch or tag in the template repository
 
+variables:
+- group: Project1
+
 parameters:
   - name: poolName
     default: self-hosted-agent
@@ -21,6 +24,7 @@ stages:
   - template: templates/checkout.yaml@Pipeline_Repo
     parameters:
       poolName: ${{ parameters.poolName }}
+      GITHUB_ACCESS_TOKEN: ${{ variables.Project1.GITHUB_ACCESS_TOKEN }}
 
 - template: templates/deployment.yaml@Pipeline_Repo
   parameters:
