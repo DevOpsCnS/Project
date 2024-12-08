@@ -21,3 +21,20 @@ stages:
   - template: templates/checkout.yaml@Pipeline_Repo
     parameters:
       poolName: ${{ parameters.poolName }}
+
+- template: templates/deployment.yaml@Pipeline_Repo
+  parameters:
+    environment: Dev
+
+- template: templates/deployment.yaml@Pipeline_Repo
+  parameters:
+    environment: QA
+
+- template: templates/deployment.yaml@Pipeline_Repo
+  parameters:
+    environment: Stage
+
+- template: templates/deployment.yaml@Pipeline_Repo
+  parameters:
+    environment: Production
+
