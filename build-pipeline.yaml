@@ -1,0 +1,22 @@
+resources:
+  repositories:
+    - repository: Pipeline_Repo  # Alias for the template repository
+      type: github
+      name: DevOpsCnS/template-repo  # Specify the project and repository name
+      ref: refs/heads/main  # Branch or tag in the template repository
+
+parameters:
+  - name: poolName
+    default: self-hosted-agent
+trigger:
+- none
+
+pool:
+  name: self-hosted-agent
+
+stages:
+- stage: Build
+  jobs:
+  - template: templates/checkout.yaml@Pipeline_Repo
+    parameters:
+      poolName: ${{ parameters.poolName }}
