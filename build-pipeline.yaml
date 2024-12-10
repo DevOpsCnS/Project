@@ -31,7 +31,7 @@ stages:
   - job: Global variable Demo
     pool:
       name: $(poolName)
-    - script: echo Hello DevOps CnS, This is global variable $(variable1)!
+    - script: "echo Hello DevOps CnS, This is global variable $(variable1)!"
       displayName: 'Global Variable Demo'
 
 - template: templates/deployment.yaml@Pipeline_Repo
