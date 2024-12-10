@@ -31,6 +31,7 @@ stages:
   - job: Global variable Demo
     pool:
       name: $(poolName)
+    steps:
     - script: "echo Hello DevOps CnS, This is global variable $(variable1)!"
       displayName: 'Global Variable Demo'
 
