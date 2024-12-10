@@ -8,10 +8,12 @@ resources:
 
 variables:
 - group: Project1
+- template: templates/global-variables.yaml@Pipeline_Repo
 
 parameters:
-  - name: poolName
-    default: self-hosted-agent
+  - name: jobName
+    default: Build
+
 trigger:
 - none
 
@@ -19,12 +21,18 @@ pool:
   name: self-hosted-agent
 
 stages:
-- stage: Build
+- stage: ${{ parameters.jobName }}
   jobs:
   - template: templates/checkout.yaml@Pipeline_Repo
     parameters:
-      poolName: ${{ parameters.poolName }}
+      poolName: $(poolName)
       GITHUB_ACCESS_TOKEN: ${{ variables.Project1.GITHUB_ACCESS_TOKEN }}
+
+  - job: Global variable Demo
+    pool:
+      name: $(poolName)
+    - script: echo Hello DevOps CnS, This is global variable $(variable1)!
+      displayName: 'Global Variable Demo'
 
 - template: templates/deployment.yaml@Pipeline_Repo
   parameters:
