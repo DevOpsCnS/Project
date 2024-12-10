@@ -28,7 +28,7 @@ stages:
       poolName: $(poolName)
       GITHUB_ACCESS_TOKEN: ${{ variables.Project1.GITHUB_ACCESS_TOKEN }}
 
-  - job: Global variable Demo
+  - job: Global_Variable_Demo
     pool:
       name: $(poolName)
     steps:
